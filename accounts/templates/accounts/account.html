@@ -1,0 +1,130 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<hr>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-10">
+            <h1>User name</h1>
+        </div>
+        <div class="col-sm-2"><a href="/users" class="pull-right"><img title="profile image"
+                    class="img-circle img-responsive" src="{% static 'media/logo-dark.png' %}" width="165"></a></div>
+    </div>
+    <form class="form" method="POST" id="registrationForm" enctype="multipart/form-data">{% csrf_token %}
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="text-center">
+                    <img src="{{ request.user.profile_pic.url }}" class="avatar img-circle img-thumbnail" alt="avatar">
+                    <h6>Upload a different photo...</h6>
+                    {{ form.profile_pic }}
+                </div>
+                </hr><br>
+                <div class="panel panel-default">
+                    <div class="panel-heading">Website <i class="fa fa-link fa-1x"></i></div>
+                    <div class="panel-body"><a href="{{ request.user.work_line }}">{{ request.user.work_line}}</a></div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">Social Media</div>
+                    <div class="panel-body">
+                        <i class="fa fa-facebook fa-2x"></i> <i class="fa fa-github fa-2x"></i>
+                        <i class="fa fa-twitter fa-2x"></i> <i class="fa fa-pinterest fa-2x"></i>
+                        <i class="fa fa-google-plus fa-2x"></i>
+                    </div>
+                </div>
+            </div>
+            <!--/col-4-->
+            <div class="col-sm-8">
+                <div class="tab-content">
+                    <div class="tab-pane active" id="home">
+                        <hr>
+                        <div class="form-group">
+                            <div class="col-xs-6">
+                                <label for="last_name">
+                                    <h4>Name</h4>
+                                </label>
+                                {{ form.name }}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-xs-6">
+                                <label for="last_name">
+                                    <h4>Username</h4>
+                                </label>
+                                {{ form.username }}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-xs-6">
+                                <label for="phone">
+                                    <h4>Phone</h4>
+                                </label>
+                                {{ form.phone }}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-xs-6">
+                                <label for="mobile">
+                                    <h4>Email</h4>
+                                </label>
+                                {{ form.email }}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-xs-6">
+                                <label for="email">
+                                    <h4>Profession</h4>
+                                </label>
+                                {{ form.profession }}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-xs-6">
+                                <label for="password">
+                                    <h4>Work Link</h4>
+                                </label>
+                                {{ form.work_line }}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-xs-6">
+                                <label for="password2">
+                                    <h4>Skills</h4>
+                                </label>
+                                {{ form.skills }}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-xs-12">
+                                <br>
+                                <button class="btn btn-lg btn-success" type="submit"><i class="fa fa-check"></i>
+                                    Save</button>
+                                <a href="{% url 'password_change' %}" class="btn btn-lg btn-info"><i
+                                        class="fa fa-list"></i> Change Password</a>
+                                <button class="btn btn-lg" type="reset"><i class="glyphicon glyphicon-repeat"></i>
+                                    Reset</button>
+                            </div>
+                        </div>
+                        <hr>
+                    </div>
+                </div>
+                <!--/tab-pane-->
+            </div>
+            <!--/tab-content-->
+        </div>
+    </form>
+    <!--/col-9-->
+</div>
+<!--/row-->
+<script>
+    var form_fields = document.getElementsByName('profile_pic')
+    for (var field in form_fields) {
+        form_fields[field].className += 'text-center center-block file-upload'
+    }
+</script>
+<script>
+    var fields_form = document.getElementsByTagName('input')
+    for (var fields in fields_form) {
+        fields_form[fields].className += 'form-control'
+    }
+</script>
+{% endblock content %}

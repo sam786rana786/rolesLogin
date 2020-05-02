@@ -31,3 +31,5 @@ DEBUG_TOOLBAR_PANELS = [
 DATABASES = {
     'default': env.db('SQLITE_URL')
 }
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
